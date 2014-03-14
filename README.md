@@ -123,7 +123,7 @@ void testApp::draw() {
 ### Data Passing
 You have two kinds of setup(). ofxSceneManager calls one you implement. 
 * void setup()
-* void setup(ofPtr<ofxScene> previousScene)
+* void setup(ofPtr\<ofxScene\> previousScene)
 
 If a scene needs data of a previous scene,
 implement ```void setup(ofPtr<ofxScene> previousScene)``` instead of ```void setup()```.

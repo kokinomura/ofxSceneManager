@@ -24,7 +24,7 @@
 		E4C2424810CC5A17004149E2 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E4C2424510CC5A17004149E2 /* Cocoa.framework */; };
 		E4C2424910CC5A17004149E2 /* IOKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E4C2424610CC5A17004149E2 /* IOKit.framework */; };
 		E4EB6799138ADC1D00A09F29 /* GLUT.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BBAB23BE13894E4700AA2426 /* GLUT.framework */; };
-		E7BEFAC018D057A70047F99B /* ofxSceneManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E7BEFABC18D057A70047F99B /* ofxSceneManager.cpp */; };
+		E7758075191A43CB004E2033 /* ofxSceneManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E7758069191A43CB004E2033 /* ofxSceneManager.cpp */; };
 		E7BEFB1E18D058130047F99B /* FirstScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E7BEFB1C18D058130047F99B /* FirstScene.cpp */; };
 		E7D1A76818D05A7F007406BE /* SecondScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E7D1A76618D05A7F007406BE /* SecondScene.cpp */; };
 		E7E077E515D3B63C0020DFD4 /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E7E077E415D3B63C0020DFD4 /* CoreVideo.framework */; };
@@ -97,9 +97,9 @@
 		E4EB691F138AFCF100A09F29 /* CoreOF.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = CoreOF.xcconfig; path = ../../../libs/openFrameworksCompiled/project/osx/CoreOF.xcconfig; sourceTree = SOURCE_ROOT; };
 		E4EB6923138AFD0F00A09F29 /* Project.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = Project.xcconfig; sourceTree = "<group>"; };
 		E71484CC18D1A84000C90612 /* example-SimpleDebug.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "example-SimpleDebug.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		E7BEFABB18D057A70047F99B /* ofxScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxScene.h; sourceTree = "<group>"; };
-		E7BEFABC18D057A70047F99B /* ofxSceneManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ofxSceneManager.cpp; sourceTree = "<group>"; };
-		E7BEFABD18D057A70047F99B /* ofxSceneManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxSceneManager.h; sourceTree = "<group>"; };
+		E7758068191A43CB004E2033 /* ofxScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxScene.h; sourceTree = "<group>"; };
+		E7758069191A43CB004E2033 /* ofxSceneManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ofxSceneManager.cpp; sourceTree = "<group>"; };
+		E775806A191A43CB004E2033 /* ofxSceneManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxSceneManager.h; sourceTree = "<group>"; };
 		E7BEFB1C18D058130047F99B /* FirstScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = FirstScene.cpp; sourceTree = "<group>"; };
 		E7BEFB1D18D058130047F99B /* FirstScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FirstScene.h; sourceTree = "<group>"; };
 		E7D1A76618D05A7F007406BE /* SecondScene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SecondScene.cpp; sourceTree = "<group>"; };
@@ -167,8 +167,8 @@
 		BB4B014C10F69532006C3DED /* addons */ = {
 			isa = PBXGroup;
 			children = (
+				E7758038191A43CB004E2033 /* ofxSceneManager */,
 				E7EE085818D067300077EBBD /* ofxTween */,
-				E7BEFAB618D057A70047F99B /* ofxScene */,
 			);
 			name = addons;
 			sourceTree = "<group>";
@@ -256,23 +256,23 @@
 			name = openFrameworks;
 			sourceTree = "<group>";
 		};
-		E7BEFAB618D057A70047F99B /* ofxScene */ = {
+		E7758038191A43CB004E2033 /* ofxSceneManager */ = {
 			isa = PBXGroup;
 			children = (
-				E7BEFB1B18D057EC0047F99B /* src */,
+				E7758067191A43CB004E2033 /* src */,
 			);
-			name = ofxScene;
-			path = ../src;
+			name = ofxSceneManager;
+			path = ../../../addons/ofxSceneManager;
 			sourceTree = "<group>";
 		};
-		E7BEFB1B18D057EC0047F99B /* src */ = {
+		E7758067191A43CB004E2033 /* src */ = {
 			isa = PBXGroup;
 			children = (
-				E7BEFABB18D057A70047F99B /* ofxScene.h */,
-				E7BEFABC18D057A70047F99B /* ofxSceneManager.cpp */,
-				E7BEFABD18D057A70047F99B /* ofxSceneManager.h */,
+				E7758068191A43CB004E2033 /* ofxScene.h */,
+				E7758069191A43CB004E2033 /* ofxSceneManager.cpp */,
+				E775806A191A43CB004E2033 /* ofxSceneManager.h */,
 			);
-			name = src;
+			path = src;
 			sourceTree = "<group>";
 		};
 		E7EE085818D067300077EBBD /* ofxTween */ = {
@@ -413,6 +413,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E7758075191A43CB004E2033 /* ofxSceneManager.cpp in Sources */,
 				E7EE08A018D067310077EBBD /* ofxEasingBack.cpp in Sources */,
 				E7EE08A218D067310077EBBD /* ofxEasingCirc.cpp in Sources */,
 				E7EE08AA18D067310077EBBD /* ofxEasingSine.cpp in Sources */,
@@ -422,7 +423,6 @@
 				E7EE08A518D067310077EBBD /* ofxEasingExpo.cpp in Sources */,
 				E4B69E200A3A1BDC003C02F2 /* main.cpp in Sources */,
 				E7EE08A418D067310077EBBD /* ofxEasingElastic.cpp in Sources */,
-				E7BEFAC018D057A70047F99B /* ofxSceneManager.cpp in Sources */,
 				E7EE08AB18D067310077EBBD /* ofxTween.cpp in Sources */,
 				E7EE08A918D067310077EBBD /* ofxEasingQuint.cpp in Sources */,
 				E7EE08A618D067310077EBBD /* ofxEasingLinear.cpp in Sources */,

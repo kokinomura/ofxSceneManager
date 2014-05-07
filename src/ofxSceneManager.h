@@ -29,10 +29,11 @@ public:
     void setSceneDuration(float fadeInSec, float fadeOutSec);
     void setSceneDuration(float fadeInSec, float drawingSec, float fadeOutSec);    
 
-private:
+    vector<ofPtr<ofxScene> > scenes;
+
+ private:
     int _sceneIndex = 0;
     ofPtr<ofxScene> _currentScene;
-    vector<ofPtr<ofxScene> > _scenes;
 
     ofFbo _fbo;
 

@@ -9,11 +9,8 @@
 
 #include "ofxSceneManager.h"
 
-ofxSceneManager::ofxSceneManager() {
-    _fbo.allocate(ofGetWidth(), ofGetHeight());
-}
-
 void ofxSceneManager::run() {
+    _fbo.allocate(ofGetWidth(), ofGetHeight(), GL_RGBA);
     _initScene(_sceneIndex);
 }
 

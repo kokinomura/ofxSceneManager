@@ -13,7 +13,6 @@
 
 class ofxSceneManager {
 public:
-    ofxSceneManager();
     void run();
     
     void update();

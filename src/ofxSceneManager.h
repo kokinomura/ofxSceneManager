@@ -11,9 +11,7 @@
 
 #include "ofxScene.h"
 
-// ここ雑な命名で名前空間を汚してて良くない
-// あとでStateパターンに変更する
-enum Transition{
+enum ofxSmTransition{
     TRANSITION_FADE,
     TRANSITION_DISSOLVE
 };
@@ -33,9 +31,8 @@ public:
     void setExitByTime(bool b);
     void setSceneDuration(float fadeInSec, float fadeOutSec);
     void setSceneDuration(float fadeInSec, float drawingSec, float fadeOutSec);  
-    void setTransitionDissolve();
     void setTransitionFade();
-    void setTransitionCut();
+    void setTransitionDissolve();
 
     vector<ofPtr<ofxScene> > scenes;
 
@@ -49,13 +46,14 @@ public:
     ofFbo _fbo;
     ofFbo _nextFbo;
     
-    Transition transition = TRANSITION_FADE;
-    bool isInTransition = false;
+    ofxSmTransition transition = TRANSITION_FADE;
+    bool _isInTransition = false;
     
-    void onStartFadingIn(bool &b);
-    void onStartDrawing(bool &b);
-    void onStartFadingOut(bool &b);
-    void onFinishScene(bool &b);
+    void _onStartFadingIn(bool &b);
+    void _onStartDrawing(bool &b);
+    void _onFinishedDrawing(bool &b);    
+    void _onStartFadingOut(bool &b);
+    void _onFinishScene(bool &b);
 };
 
 #endif /* defined(__KokiNomura__ofxSceneManager__) */

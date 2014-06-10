@@ -27,7 +27,7 @@ public:
 
 - Fill all functions you need.
 
-You have 7 functions you can override, and no one is mandatory.
+You have 7 functions you can override, and none of them are mandatory.
 
     void setup();
     void update();

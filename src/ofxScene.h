@@ -90,7 +90,7 @@ public:
         return _fadeOutSec;
     }
     
-#pragma mark - etc
+#pragma mark - Etc
     void setExitByTime(bool b) {
         _bExitByTime = b;
     }
@@ -98,6 +98,12 @@ public:
     float getSceneAlpha() {
         return _alphaTween.getTarget(0);
     }
+    
+#pragma mark - Events
+    ofEvent<bool> startFadingInEvent;  // The arg is currently not used.
+    ofEvent<bool> startDrawingEvent;
+    ofEvent<bool> startFadingOutEvent;
+    ofEvent<bool> finishSceneEvent;
 
 private:
     bool _bExitByTime = false;
@@ -133,6 +139,9 @@ private:
         _statusEndTime = _fadeInSec + ofGetElapsedTimef();
         _alphaTween.setParameters(_easing, ofxTween::easeOut, 0, 255, _fadeInSec*1000, 0);
         willFadeIn();
+        
+        bool b = true;
+        ofNotifyEvent(startFadingInEvent, b, this);
     }
     
     void startDrawing() {
@@ -144,6 +153,9 @@ private:
             _statusEndTime = _drawingSec + ofGetElapsedTimef();
         }
         willDraw();
+        
+        bool b = true;        
+        ofNotifyEvent(startDrawingEvent, b, this);
     }
     
     void startFadingOut() {
@@ -154,6 +166,9 @@ private:
         _statusEndTime = _fadeOutSec + ofGetElapsedTimef();
         _alphaTween.setParameters(_easing, ofxTween::easeOut, 255, 0, _fadeOutSec*1000, 0);  
         willFadeOut();
+        
+        bool b = true;        
+        ofNotifyEvent(startFadingOutEvent, b, this);        
     }
     
     void finishScene() {
@@ -162,6 +177,9 @@ private:
         }
         _status = FINISHED;
         willExit();
+        
+        bool b = true;        
+        ofNotifyEvent(finishSceneEvent, b, this);
     }
     
 #pragma mark - Status

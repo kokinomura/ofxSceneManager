@@ -7,10 +7,11 @@
 void testApp::setup(){
     sceneManager.addScene(ofPtr<ofxScene>(new FirstScene));
     sceneManager.addScene(ofPtr<ofxScene>(new SecondScene));
-    sceneManager.setExitByTime(true);
+    sceneManager.setExitByTime(false);
     sceneManager.setSceneDuration(0.3, 1.5, 0.3);
+    sceneManager.setTransitionFade();
     
-    sceneManager.run();
+    sceneManager.run(); 
 }
 
 //--------------------------------------------------------------
@@ -25,7 +26,9 @@ void testApp::draw(){
 
 //--------------------------------------------------------------
 void testApp::keyPressed(int key){
-
+    if (key == ' ') {
+        sceneManager.changeScene();
+    }
 }
 
 //--------------------------------------------------------------

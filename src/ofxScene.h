@@ -102,6 +102,7 @@ public:
 #pragma mark - Events
     ofEvent<bool> startFadingInEvent;  // The arg is currently not used.
     ofEvent<bool> startDrawingEvent;
+    ofEvent<bool> finishedDrawingEvent;    
     ofEvent<bool> startFadingOutEvent;
     ofEvent<bool> finishSceneEvent;
 
@@ -189,7 +190,11 @@ private:
     
     bool finishedDrawing() {
         if (_bExitByTime) {
-            return _status == DRAWING && _statusEndTime < ofGetElapsedTimef();
+            bool b = _status == DRAWING && _statusEndTime < ofGetElapsedTimef();
+            if (b) {
+                ofNotifyEvent(finishedDrawingEvent, b, this);
+            }
+            return b;
         } else {
             return false;
         }

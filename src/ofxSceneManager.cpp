@@ -11,6 +11,16 @@
 
 void ofxSceneManager::run() {
     _fbo.allocate(ofGetWidth(), ofGetHeight(), GL_RGBA);
+    _nextFbo.allocate(ofGetWidth(), ofGetHeight(), GL_RGBA);
+    
+    _fbo.begin();
+    ofClear(255, 255, 255, 0);
+    _fbo.end();
+    
+    _nextFbo.begin();
+    ofClear(255, 255, 255, 0);
+    _nextFbo.end();
+    
     ofPtr<ofxScene> previousScene;
     previousScene = _currentScene;
     _currentScene = scenes.at(_sceneIndex);
@@ -18,71 +28,54 @@ void ofxSceneManager::run() {
 }
 
 void ofxSceneManager::update() {
-    if (transition == TRANSITION_FADE) {
-        _currentScene->updateScene();
-    } else if (transition == TRANSITION_DISSOLVE) {
-        if (isInTransition) {
-            _nextScene->updateScene();
-        }
-        _currentScene->updateScene();
+    if (transition == TRANSITION_DISSOLVE && _isInTransition) {
+        _nextScene->updateScene();
     }
+    _currentScene->updateScene();
 }
 
 void ofxSceneManager::draw() {
-    if (transition == TRANSITION_FADE) {
-        _fbo.begin();
-        ofClear(255, 255, 255);
-        _currentScene->drawScene();
-        _fbo.end();
-        
-        ofPushStyle();
-        ofSetColor(255, 255, 255, _currentScene->getSceneAlpha());
-        _fbo.draw(0, 0);
-        ofPopStyle();
-    } else if (transition == TRANSITION_DISSOLVE) {
-        if (isInTransition) {
-            _nextFbo.begin();
-            _nextScene->drawScene();
-            _nextFbo.end();
-        }
+    if (transition == TRANSITION_DISSOLVE && _isInTransition) {
+        _nextFbo.begin();
+        _nextScene->drawScene();
+        _nextFbo.end();
+    }
 
-        _fbo.begin();
-        ofClear(255, 255, 255);
-        _currentScene->drawScene();
-        _fbo.end();
-        
-        ofPushStyle();
-        ofSetColor(255, 255, 255, _currentScene->getSceneAlpha());
-        _fbo.draw(0, 0);
-        ofPopStyle();
+    _fbo.begin();
+    _currentScene->drawScene();
+    _fbo.end();
+    
+    ofPushStyle();
+    ofSetColor(255, 255, 255, _currentScene->getSceneAlpha());
+    _fbo.draw(0, 0);
+    ofPopStyle();
 
-        if (isInTransition) {
-            ofPushStyle();
-            ofSetColor(255, 255, 255, _nextScene->getSceneAlpha());
-            _nextFbo.draw(0, 0);
-            ofPopStyle();
-        }
+    if (transition == TRANSITION_DISSOLVE && _isInTransition) {
+        ofPushStyle();
+        ofSetColor(255, 255, 255, _nextScene->getSceneAlpha());
+        _nextFbo.draw(0, 0);
+        ofPopStyle();
     }
 }
 
 void ofxSceneManager::changeScene() {
-    // 時間ではなく強制的にシーン変化
-    if (transition == TRANSITION_FADE) {
-        _currentScene->exitScene();        
-    } else if (transition == TRANSITION_DISSOLVE) {
-        _currentScene->exitScene();
-    }
+    changeScene((_sceneIndex+1) % scenes.size());
 }
 
 void ofxSceneManager::changeScene(int sceneIndex) {
-    
+    if (sceneIndex == _sceneIndex) {
+        return;
+    }
+    _nextSceneIndex = sceneIndex;
+    _currentScene->exitScene();
 }
 
 void ofxSceneManager::addScene(ofPtr<ofxScene> pScene) {
-    ofAddListener(pScene->startFadingInEvent, this, &ofxSceneManager::onStartFadingIn);
-    ofAddListener(pScene->startDrawingEvent, this, &ofxSceneManager::onStartDrawing);
-    ofAddListener(pScene->startFadingOutEvent, this, &ofxSceneManager::onStartFadingOut);
-    ofAddListener(pScene->finishSceneEvent, this, &ofxSceneManager::onFinishScene);
+    ofAddListener(pScene->startFadingInEvent, this, &ofxSceneManager::_onStartFadingIn);
+    ofAddListener(pScene->startDrawingEvent, this, &ofxSceneManager::_onStartDrawing);
+    ofAddListener(pScene->finishedDrawingEvent, this, &ofxSceneManager::_onFinishedDrawing);    
+    ofAddListener(pScene->startFadingOutEvent, this, &ofxSceneManager::_onStartFadingOut);
+    ofAddListener(pScene->finishSceneEvent, this, &ofxSceneManager::_onFinishScene);
     scenes.push_back(pScene);
 }
 
@@ -112,37 +105,32 @@ void ofxSceneManager::setTransitionFade() {
     transition = TRANSITION_FADE;
 }
 
-void ofxSceneManager::setTransitionCut() {
-#warning ToDo
-}
-
 #pragma mark - Private Methods
 
-void ofxSceneManager::onStartFadingIn(bool &b) {
-    cout << "s1" << endl;
+void ofxSceneManager::_onStartFadingIn(bool &b) {
+
 }
 
-void ofxSceneManager::onStartDrawing(bool &b) {
-    cout << "s2" << endl;    
+void ofxSceneManager::_onStartDrawing(bool &b) {
+
 }
 
-void ofxSceneManager::onStartFadingOut(bool &b) {
-    cout << "s3" << endl;    
-    //dissolveの場合はここから開始
+void ofxSceneManager::_onFinishedDrawing(bool &b) {
+    // called when scenes exit by time
+    _nextSceneIndex = (_sceneIndex + 1) % scenes.size();
+}
+
+void ofxSceneManager::_onStartFadingOut(bool &b) {
     if (transition == TRANSITION_FADE) {
-        _nextSceneIndex = _sceneIndex + 1;
-        _nextSceneIndex %= scenes.size();
+        ;
     } else if (transition == TRANSITION_DISSOLVE) {
-        _nextSceneIndex = _sceneIndex + 1;
-        _nextSceneIndex %= scenes.size();
         _nextScene = scenes.at(_nextSceneIndex);
         _nextScene->setupScene(_currentScene);
-        isInTransition = true;
+        _isInTransition = true;
     }
 }
 
-void ofxSceneManager::onFinishScene(bool &b) {
-    cout << "s4" << endl;    
+void ofxSceneManager::_onFinishScene(bool &b) {
     if (transition == TRANSITION_FADE) {
         _sceneIndex = _nextSceneIndex;
         ofPtr<ofxScene> previousScene;
@@ -150,7 +138,7 @@ void ofxSceneManager::onFinishScene(bool &b) {
         _currentScene = scenes.at(_sceneIndex);
         _currentScene->setupScene(previousScene);
     } else if (transition == TRANSITION_DISSOLVE) {
-        isInTransition = false;
+        _isInTransition = false;
         _currentScene = _nextScene;
         _sceneIndex = _nextSceneIndex;
     }

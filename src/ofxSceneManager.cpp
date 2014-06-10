@@ -74,9 +74,7 @@ void ofxSceneManager::setSceneDuration(float fadeInSec, float drawingSec, float 
 
 void ofxSceneManager::_initScene(int sceneIndex) {
     ofPtr<ofxScene> previousScene;
-    if (sceneIndex != 0) {
-        previousScene = _currentScene;
-    }
+    previousScene = _currentScene;
     _currentScene = scenes.at(sceneIndex);
     _currentScene->setupScene(previousScene);
 }

@@ -5,12 +5,20 @@
 
 //--------------------------------------------------------------
 void testApp::setup(){
-    sceneManager.addScene(ofPtr<ofxScene>(new FirstScene));
-    sceneManager.addScene(ofPtr<ofxScene>(new SecondScene));
-    sceneManager.setExitByTime(true);
-    sceneManager.setSceneDuration(0.3, 1.5, 0.3);
+    FirstScene* firstScene = new FirstScene;
+    firstScene->setSceneDuration(0.5, 1.5, 0.5);
     
-    sceneManager.run();
+    SecondScene* secondScene = new SecondScene;
+    secondScene->setSceneDuration(0.5, 3.0, 0.5);
+    
+    sceneManager.addScene(ofPtr<ofxScene>(firstScene));
+    sceneManager.addScene(ofPtr<ofxScene>(secondScene));
+    sceneManager.setExitByTime(true);
+    
+    sceneManager.setTransitionDissolve();
+//    sceneManager.setTransitionFade();
+    
+    sceneManager.run(); 
 }
 
 //--------------------------------------------------------------
@@ -25,7 +33,13 @@ void testApp::draw(){
 
 //--------------------------------------------------------------
 void testApp::keyPressed(int key){
-
+    if (key == ' ') {
+        sceneManager.changeScene();
+    } else if (key == '0') {
+        sceneManager.changeScene(0);
+    } else if (key == '1') {
+        sceneManager.changeScene(1);
+    }
 }
 
 //--------------------------------------------------------------

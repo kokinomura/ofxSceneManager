@@ -24,6 +24,7 @@
 		E4C2424810CC5A17004149E2 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E4C2424510CC5A17004149E2 /* Cocoa.framework */; };
 		E4C2424910CC5A17004149E2 /* IOKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E4C2424610CC5A17004149E2 /* IOKit.framework */; };
 		E4EB6799138ADC1D00A09F29 /* GLUT.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BBAB23BE13894E4700AA2426 /* GLUT.framework */; };
+		E7609F741946E4870020B567 /* ofxTransition.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E7609F721946E4870020B567 /* ofxTransition.cpp */; };
 		E7758075191A43CB004E2033 /* ofxSceneManager.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E7758069191A43CB004E2033 /* ofxSceneManager.cpp */; };
 		E7BEFB1E18D058130047F99B /* FirstScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E7BEFB1C18D058130047F99B /* FirstScene.cpp */; };
 		E7D1A76818D05A7F007406BE /* SecondScene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = E7D1A76618D05A7F007406BE /* SecondScene.cpp */; };
@@ -97,6 +98,8 @@
 		E4EB691F138AFCF100A09F29 /* CoreOF.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; name = CoreOF.xcconfig; path = ../../../libs/openFrameworksCompiled/project/osx/CoreOF.xcconfig; sourceTree = SOURCE_ROOT; };
 		E4EB6923138AFD0F00A09F29 /* Project.xcconfig */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xcconfig; path = Project.xcconfig; sourceTree = "<group>"; };
 		E71484CC18D1A84000C90612 /* example-SimpleDebug.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "example-SimpleDebug.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		E7609F721946E4870020B567 /* ofxTransition.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ofxTransition.cpp; sourceTree = "<group>"; };
+		E7609F731946E4870020B567 /* ofxTransition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxTransition.h; sourceTree = "<group>"; };
 		E7758068191A43CB004E2033 /* ofxScene.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxScene.h; sourceTree = "<group>"; };
 		E7758069191A43CB004E2033 /* ofxSceneManager.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ofxSceneManager.cpp; sourceTree = "<group>"; };
 		E775806A191A43CB004E2033 /* ofxSceneManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ofxSceneManager.h; sourceTree = "<group>"; };
@@ -271,6 +274,8 @@
 				E7758068191A43CB004E2033 /* ofxScene.h */,
 				E7758069191A43CB004E2033 /* ofxSceneManager.cpp */,
 				E775806A191A43CB004E2033 /* ofxSceneManager.h */,
+				E7609F721946E4870020B567 /* ofxTransition.cpp */,
+				E7609F731946E4870020B567 /* ofxTransition.h */,
 			);
 			path = src;
 			sourceTree = "<group>";
@@ -420,6 +425,7 @@
 				E7EE08A818D067310077EBBD /* ofxEasingQuart.cpp in Sources */,
 				E7EE08A718D067310077EBBD /* ofxEasingQuad.cpp in Sources */,
 				E7D1A76818D05A7F007406BE /* SecondScene.cpp in Sources */,
+				E7609F741946E4870020B567 /* ofxTransition.cpp in Sources */,
 				E7EE08A518D067310077EBBD /* ofxEasingExpo.cpp in Sources */,
 				E4B69E200A3A1BDC003C02F2 /* main.cpp in Sources */,
 				E7EE08A418D067310077EBBD /* ofxEasingElastic.cpp in Sources */,

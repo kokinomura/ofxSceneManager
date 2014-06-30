@@ -25,7 +25,11 @@ void testApp::draw(){
 
 //--------------------------------------------------------------
 void testApp::keyPressed(int key){
-
+    if (key == '1') {
+        sceneManager.gotoScene(0);
+    } else if (key == '2') {
+        sceneManager.gotoScene(1);
+    }
 }
 
 //--------------------------------------------------------------

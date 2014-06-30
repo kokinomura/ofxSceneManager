@@ -19,6 +19,7 @@ public:
     void draw();
 
     void changeScene();
+    void gotoScene(int sceneNum);
 
     void addScene(ofPtr<ofxScene> pScene);
     void addScene(ofPtr<ofxScene> pScene, float fadeInSec, float fadeOutSec);
@@ -32,6 +33,7 @@ public:
 
  private:
     int _sceneIndex = 0;
+    int _nextSceneIndex = 1;
     ofPtr<ofxScene> _currentScene;
 
     ofFbo _fbo;

@@ -16,9 +16,10 @@ void ofxSceneManager::run() {
 
 void ofxSceneManager::update() {
     if (_currentScene->isFinished()) {
-        _sceneIndex++;
-        _sceneIndex %= scenes.size();
+        _sceneIndex = _nextSceneIndex;
         _initScene(_sceneIndex);
+        _nextSceneIndex = _sceneIndex + 1;
+        _nextSceneIndex %= scenes.size();
     }
     
     _currentScene->updateScene();
@@ -38,6 +39,14 @@ void ofxSceneManager::draw() {
 
 void ofxSceneManager::changeScene() {
     _currentScene->exitScene();
+}
+
+void ofxSceneManager::gotoScene(int sceneIndex) {
+    if (sceneIndex == _sceneIndex) {
+        return;
+    }
+    _nextSceneIndex = sceneIndex;
+    _currentScene->exitScene();    
 }
 
 void ofxSceneManager::addScene(ofPtr<ofxScene> pScene) {

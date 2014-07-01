@@ -101,7 +101,7 @@ public:
 
 private:
     bool _bExitByTime = false;
-    enum {FADINGIN, DRAWING, FADINGOUT, FINISHED} _status;
+    enum {FADINGIN, DRAWING, FADINGOUT, FINISHED} _status = FINISHED;
     
     float _fadeInSec = 0.3;
     float _drawingSec = 1.0;

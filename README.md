@@ -1,7 +1,7 @@
-ofxScreenManager
+ofxSceneManager
 =========
 
-ofxScreenManager supports multiple scenes, fade-in/fade-out transitions and data passing between scenes.
+ofxSceneManager supports multiple scenes, fade-in/fade-out transitions and data passing between scenes.
 
 Dependency
 ------------
@@ -21,7 +21,7 @@ public:
     void setup();
     void update();
     void draw();
-    void exit();            
+    void exit();
 }
 ```
 
@@ -51,7 +51,7 @@ public:
 void testApp::setup() {
     sceneManager.addScene(ofPtr<ofxScene>(new FirstScene));
     sceneManager.addScene(ofPtr<ofxScene>(new SecondScene));
-}   
+}
 ```
 
 
@@ -61,9 +61,9 @@ void testApp::setup() {
 void testApp::setup() {
     sceneManager.addScene(ofPtr<ofxScene>(new FirstScene));
     sceneManager.addScene(ofPtr<ofxScene>(new SecondScene));
-    
+
     sceneManager.run();
-}   
+}
 
 void testApp::update() {
     sceneManager.update();
@@ -88,7 +88,7 @@ void testApp::setup() {
     sceneManager.addScene(ofPtr<ofxScene>(new SecondScene));
     sceneManager.setExitByTime(false);  // You don't need this line since it's false by default.
     sceneManager.setSceneDuration(0.3, 0.3);  //fade-in, fade-out time.
-}   
+}
 
 void testApp::keyPressed(int key){
     if (key == ' ') {
@@ -103,7 +103,7 @@ void testApp::setup() {
     sceneManager.addScene(ofPtr<ofxScene>(new SecondScene));
     sceneManager.setExitByTime(true);
     sceneManager.setSceneDuration(0.3, 15.0, 0.3);  //fade-in, drawing, fade-out time respectively.
-}   
+}
 ```
 
 Call ofxSceneManager::changeScene() to change scenes.
@@ -121,7 +121,7 @@ void testApp::draw() {
 ```
 
 ### Data Passing
-You have two kinds of setup(). ofxSceneManager calls one you implement. 
+You have two kinds of setup(). ofxSceneManager calls one you implement.
 * void setup()
 * void setup(ofPtr\<ofxScene\> previousScene)
 

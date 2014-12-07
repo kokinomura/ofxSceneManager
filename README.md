@@ -1,17 +1,15 @@
-ofxSceneManager
-=========
+# ofxSceneManager
 
 ofxSceneManager supports multiple scenes, fade-in/fade-out transitions and data passing between scenes.
 
-Dependency
-------------
+## Dependency
 
 - ofxTween (https://github.com/arturoc/ofxTween)
 
 
-Getting Started
----------------------------
-- Write your subclasses of ofxScene.
+## Getting Started
+
+- Write subclasses of ofxScene.
 
 ```cpp
 #include "ofxScene.h"
@@ -27,15 +25,26 @@ public:
 
 - Fill all functions you need.
 
-You have 7 functions you can override, and none of them are mandatory.
+You have all functions that ofApp has and four additional functions you can override, and none of them are mandatory.
 
     void setup();
     void update();
     void draw();
+
     void willFadeIn();
     void willDraw();
     void willFadeOut();
     void willExit();
+
+    void keyPressed(int key);
+    void keyReleased(int key);
+    void mouseMoved(int x, int y);
+    void mouseDragged(int x, int y, int button);
+    void mousePressed(int x, int y, int button);
+    void mouseReleased(int x, int y, int button);
+    void windowResized(int w, int h);
+    void dragEvent(ofDragInfo dragInfo);
+    void gotMessage(ofMessage msg);
 
 - Instantiate ofxSceneManager and add scenes.
 
@@ -75,8 +84,8 @@ void testApp::draw() {
 ```
 
 
-Functions
----------------------------
+## Functionalities
+
 ### Transition
 ofxSceneManager supports two types of transition.
 - Transition when you trigger. (default)

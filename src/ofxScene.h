@@ -100,6 +100,17 @@ public:
     }
     
 #pragma mark - Events
+    virtual void keyPressed(int key) {}
+    virtual void keyReleased(int key) {}
+    virtual void mouseMoved(int x, int y) {}
+    virtual void mouseDragged(int x, int y, int button) {}
+    virtual void mousePressed(int x, int y, int button) {}
+    virtual void mouseReleased(int x, int y, int button) {}
+    virtual void windowResized(int w, int h) {}
+    virtual void dragEvent(ofDragInfo dragInfo) {}
+    virtual void gotMessage(ofMessage msg) {}
+    
+#pragma mark - Custom Events
     ofEvent<bool> startFadingInEvent;  // The arg is currently not used.
     ofEvent<bool> startDrawingEvent;
     ofEvent<bool> finishedDrawingEvent;    

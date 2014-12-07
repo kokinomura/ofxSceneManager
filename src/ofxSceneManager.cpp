@@ -25,6 +25,17 @@ void ofxSceneManager::run() {
     previousScene = _currentScene;
     _currentScene = scenes.at(_sceneIndex);
     _currentScene->setupScene(previousScene);
+    
+    // Events
+    ofAddListener(ofEvents().keyPressed, this, &ofxSceneManager::_keyPressed);
+    ofAddListener(ofEvents().keyReleased, this, &ofxSceneManager::_keyReleased);
+    ofAddListener(ofEvents().mouseMoved, this, &ofxSceneManager::_mouseMoved);
+    ofAddListener(ofEvents().mouseDragged, this, &ofxSceneManager::_mouseDragged);
+    ofAddListener(ofEvents().mousePressed, this, &ofxSceneManager::_mousePressed);
+    ofAddListener(ofEvents().mouseReleased, this, &ofxSceneManager::_mouseReleased);
+    ofAddListener(ofEvents().windowResized, this, &ofxSceneManager::_windowResized);
+    ofAddListener(ofEvents().fileDragEvent, this, &ofxSceneManager::_dragEvent);
+    ofAddListener(ofEvents().messageEvent, this, &ofxSceneManager::_gotMessage);
 }
 
 void ofxSceneManager::update() {
@@ -142,4 +153,41 @@ void ofxSceneManager::_onFinishScene(bool &b) {
         _currentScene = _nextScene;
         _sceneIndex = _nextSceneIndex;
     }
+}
+
+#pragma mark - Events
+void ofxSceneManager::_keyPressed(ofKeyEventArgs &args) {
+    _currentScene->keyPressed(args.key);
+}
+
+void ofxSceneManager::_keyReleased(ofKeyEventArgs &args) {
+    _currentScene->keyReleased(args.key);
+}
+
+void ofxSceneManager::_mouseMoved(ofMouseEventArgs &args) {
+    _currentScene->mouseMoved(args.x, args.y);
+}
+
+void ofxSceneManager::_mouseDragged(ofMouseEventArgs &args) {
+    _currentScene->mouseDragged(args.x, args.y, args.button);
+}
+
+void ofxSceneManager::_mousePressed(ofMouseEventArgs &args) {
+    _currentScene->mousePressed(args.x, args.y, args.button);
+}
+
+void ofxSceneManager::_mouseReleased(ofMouseEventArgs &args) {
+    _currentScene->mouseReleased(args.x, args.y, args.button);
+}
+
+void ofxSceneManager::_windowResized(ofResizeEventArgs &args) {
+    _currentScene->windowResized(args.width, args.height);
+}
+
+void ofxSceneManager::_dragEvent(ofDragInfo &dragInfo) {
+    _currentScene->dragEvent(dragInfo);
+}
+
+void ofxSceneManager::_gotMessage(ofMessage &msg) {
+    _currentScene->gotMessage(msg);
 }

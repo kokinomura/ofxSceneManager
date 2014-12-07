@@ -54,6 +54,16 @@ public:
     void _onFinishedDrawing(bool &b);    
     void _onStartFadingOut(bool &b);
     void _onFinishScene(bool &b);
+    
+    void _keyPressed(ofKeyEventArgs & args);
+    void _keyReleased(ofKeyEventArgs & args);
+    void _mouseMoved(ofMouseEventArgs & args);
+    void _mouseDragged(ofMouseEventArgs & args);
+    void _mousePressed(ofMouseEventArgs & args);
+    void _mouseReleased(ofMouseEventArgs & args);
+    void _windowResized(ofResizeEventArgs & args);
+    void _dragEvent(ofDragInfo & dragInfo);
+    void _gotMessage(ofMessage & msg);
 };
 
 #endif /* defined(__KokiNomura__ofxSceneManager__) */

@@ -1,11 +1,3 @@
-//
-//  SecondScene.h
-//  example-SceneEmpty
-//
-//  Created by Koki Nomura on 2014/03/12.
-//
-//
-
 #ifndef __example_SceneEmpty__SecondScene__
 #define __example_SceneEmpty__SecondScene__
 

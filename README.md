@@ -1,6 +1,8 @@
 # ofxSceneManager
 
-ofxSceneManager supports multiple scenes, fade-in/fade-out transitions and data passing between scenes.
+A lightweight addon for openFrameworks supporting crossfading, data passing and event handling.
+
+You can write your own scenes just like ofApp!
 
 ## Dependency
 
@@ -9,7 +11,7 @@ ofxSceneManager supports multiple scenes, fade-in/fade-out transitions and data 
 
 ## Getting Started
 
-- Write subclasses of ofxScene.
+- Write your own subclasses of ofxScene.
 
 ```cpp
 #include "ofxScene.h"
@@ -27,6 +29,7 @@ public:
 
 You have basic functions of ofApp and four additional functions you can override, and none of them are mandatory.
 
+```cpp
     void setup();
     void update();
     void draw();
@@ -45,6 +48,7 @@ You have basic functions of ofApp and four additional functions you can override
     void windowResized(int w, int h);
     void dragEvent(ofDragInfo dragInfo);
     void gotMessage(ofMessage msg);
+```
 
 - Instantiate ofxSceneManager and add scenes.
 
@@ -120,7 +124,7 @@ Call ofxSceneManager::changeScene() to change scenes.
 
 ### Fading
 ofxSceneManager does fading by default, and the background color while transition is a default color of oF.
-If you want another color or a picture as background, specify in testApp::draw();
+If you want another color or a picture as a background, you can change in `testApp::draw()`;
 
 ```cpp
 void testApp::draw() {
@@ -131,8 +135,10 @@ void testApp::draw() {
 
 ### Data Passing
 You have two kinds of setup(). ofxSceneManager calls one you implement.
-* void setup()
-* void setup(ofPtr\<ofxScene\> previousScene)
+```cpp
+    void setup()
+    void setup(ofPtr<ofxScene> previousScene)
+```
 
 If a scene needs data of a previous scene,
 implement ```void setup(ofPtr<ofxScene> previousScene)``` instead of ```void setup()```.
